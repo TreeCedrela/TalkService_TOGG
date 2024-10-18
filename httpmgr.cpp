@@ -5,10 +5,10 @@ Httpmgr::~Httpmgr(){
 }
 
 Httpmgr::Httpmgr() {
-
+    connect(this, &Httpmgr::sig_http_finish, this, &Httpmgr::slot_http_finish);
 }
 
-void Httpmgr::PostHttpReq(QUrl url, QJsonObject json, RedId req_id, Modules mod)
+void Httpmgr::PostHttpReq(QUrl url, QJsonObject json, ReqId req_id, Modules mod)
 {
     QByteArray data = QJsonDocument(json).toJson();
     QNetworkRequest request(url);
@@ -33,4 +33,12 @@ void Httpmgr::PostHttpReq(QUrl url, QJsonObject json, RedId req_id, Modules mod)
         reply->deleteLater();
         return;
     })
+}
+
+void Httpmgr::slot_http_finish(ReqId id, QString res, ErrorCodes err, Modules mod)
+{
+    if(mod == Modules::REGISTERMOD){
+        //发送信号通知指定模块合http的响应结束
+        emit sig_reg_mod_finish(id, res, err);
+    }
 }

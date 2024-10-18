@@ -15,7 +15,7 @@
  */
 extern std::function<void(QWidget*)> repolish;
 
-enum RedId{
+enum ReqId{
     ID_GET_VERIFY_CODE = 1001,//获取验证码
     ID_RES_USER = 1002,//请求注册
 };
