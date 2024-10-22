@@ -28,6 +28,10 @@ void regDialog::on_get_Button_clicked()
     bool match = regex.match(email).hasMatch();
     if(match){
         //发送验证码
+        QJsonObject json_obj;
+        json_obj["email"] = email;
+        Httpmgr::GetInstance()->PostHttpReq(QUrl(gate_url_prefix + "/get_varifycode"), json_obj,
+                                            ReqId::ID_GET_VERIFY_CODE, Modules::REGISTERMOD);
     }else{
         showTips(tr("邮箱地址不正确"),false);
     }

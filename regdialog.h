@@ -11,7 +11,6 @@ class regDialog;
 class regDialog : public QDialog
 {
     Q_OBJECT
-
 public:
     explicit regDialog(QWidget *parent = nullptr);
     ~regDialog();

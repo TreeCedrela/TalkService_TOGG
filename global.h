@@ -4,11 +4,15 @@
 #include <functional>
 #include "QStyle"
 #include <QRegularExpression>
-#include <memory.h>
+#include <memory>
 #include <iostream>
 #include <mutex>
 #include <QByteArray>
 #include <QNetworkReply>
+#include <QJsonObject>
+#include <QSettings>
+#include <QDir>
+#include <QSettings>
 
 /**
  * @brief repolish 用来刷新qss
@@ -29,5 +33,7 @@ enum ErrorCodes{
     ERR_JSON = 1,
     ERR_NETWORK = 2,
 };
+
+extern QString gate_url_prefix;
 
 #endif // GLOBAL_H
